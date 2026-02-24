@@ -153,7 +153,7 @@ function CheckBuildVehiclePreconditions(depot_tile, engine_id){
 		AISign.BuildSign(depot_tile, "depot_tile")
 		abort("depot tile not owned by company")
 	}
-	type = AIEngine.GetVehicleType(engine_id)
+	local type = AIEngine.GetVehicleType(engine_id)
 	if (type == AIVehicle.VT_RAIL) {
 		if (!AIRail.IsRailDepotTile(depot_tile)) {
 			AISign.BuildSign(depot_tile, "depot_tile")
