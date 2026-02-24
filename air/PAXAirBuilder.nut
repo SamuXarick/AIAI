@@ -47,7 +47,7 @@ function PAXAirBuilder::BuildAirportRouteBetweenCitiesWithAirportTypeSet(airport
 		Info("Unfortunately no suitable aircraft found");
 		return false;
 	}
-	
+
 	ProvideMoney();
 	local tile_1 = this.FindSuitableAirportSpotInTown(airport_type);
 	if (tile_1 < 0) {
@@ -60,7 +60,7 @@ function PAXAirBuilder::BuildAirportRouteBetweenCitiesWithAirportTypeSet(airport
 		return false;
 		}
 	}
-	
+
 	/* Build the airports for real */
 	if (!AIAirport.BuildAirport(tile_1, airport_type, AIStation.STATION_NEW)) {
 		Error("Although the testing told us we could build 2 airports, it still failed on the first airport at tile " + tile_1 + ".");
@@ -74,7 +74,7 @@ function PAXAirBuilder::BuildAirportRouteBetweenCitiesWithAirportTypeSet(airport
 	}
 	AIAI_instance.SetStationName(tile_1, "");
 	AIAI_instance.SetStationName(tile_2, "");
-	
+
 local airport_x = AIAirport.GetAirportWidth(airport_type);
 local airport_y = AIAirport.GetAirportHeight(airport_type);
 local airport_rad = AIAirport.GetAirportCoverageRadius(airport_type);
@@ -86,12 +86,12 @@ local airport_rad = AIAirport.GetAirportCoverageRadius(airport_type);
 	local production_at_second_airport = AITile.GetCargoAcceptance(tile_2, Helper.GetPAXCargo(), airport_x, airport_y, airport_rad);
 	local production = min(production_at_first_airport, production_at_second_airport);
 	local counter = this.HowManyInitialAirplanes(distance, speed, production, engine);
-	for(local i=1; i<=counter; i++) 
+	for(local i=1; i<=counter; i++)
 		{
 		while(!this.BuildPassengerAircraftWithRand(tile_1, tile_2, engine, Helper.GetPAXCargo()))
 			{
 			Error("PAX aircraft construction failed due to " + AIError.GetLastErrorString()+".")
-			if (AIError.GetLastError()!=AIError.ERR_NOT_ENOUGH_CASH) 
+			if (AIError.GetLastError()!=AIError.ERR_NOT_ENOUGH_CASH)
 				{
 				return true;
 				}

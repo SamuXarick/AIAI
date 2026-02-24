@@ -300,7 +300,7 @@ function RoadBuilder::PrepareRoute() {
 		Warning("too expensivee, we have only " + GetAvailableMoney() + " And we need " + estimated_cost + " ( " + (GetAvailableMoney()*100/estimated_cost) + "% )");
 		return false;
 	}
-	return true;   
+	return true;
 }
 
 function RoadBuilder::ConstructionOfRVRoute() {
@@ -327,7 +327,7 @@ function RoadBuilder::ConstructionOfRVRoute() {
 		return false;
 	}
 	assert(AIRoad.IsRoadDepotTile(trasa.depot_tile));
-	
+
 	NameStations(trasa);
 
 	Info("   Route constructed!");
@@ -369,7 +369,7 @@ function RoadBuilder::AdditionalStationsIncreasingCapture(station_location, unlo
 
 	local tiles_for_serving = TilesForServingInRange(station_location, station_range, max_spread);
 
-	//TODO - smarter checking, rather than walk over list it may be possible 
+	//TODO - smarter checking, rather than walk over list it may be possible
 	//to get minimum number of stations needed for coverage
 
 	tiles_for_serving.Valuate(RandomValuator);
@@ -463,14 +463,14 @@ function RoadBuilder::HandleFailedConstructionOfRoute(route) {
 // additional road/depot has minor costs and makes RV more efficient as turning place is close.
 // without that in some situations vehicles must travel far away before turning is possible - in extreme cases across the maps
 // in case of road failing to be constructed station is capped by depot
-// 
+//
 // this function assumes that road is already constructed and depots may be placed without causing deadlock
 //
 // @returns location of constructed depot, null if no depot was placed
 function RoadBuilder::MakePlaceForReversingVehicles(station, name){
 	Info("   working on circle around " + name);
 	this.BuildLoopAroundStation(station.road_loop[0], station.road_loop[1], station.location);
-	if(AIRoad.BuildRoadDepot (station.road_loop[0], station.location)) { 
+	if(AIRoad.BuildRoadDepot (station.road_loop[0], station.location)) {
 		return station.road_loop[0]
 	}
 	if(AIRoad.BuildRoadDepot (station.road_loop[1], station.location)) { //to make more likely that RV have place to reverse
@@ -493,8 +493,8 @@ function FindEngineForRoute(route) {
 }
 
 function RoadBuilder::FindRVValuator(engine) {
-	//rating points for station:  (Speed (km/h) - 85) / 4 
-	//max rating points from speed: 17% (255 points - 100%, 17% - 43,35) 
+	//rating points for station:  (Speed (km/h) - 85) / 4
+	//max rating points from speed: 17% (255 points - 100%, 17% - 43,35)
 	//rating points more important than anything (almost)
 	return min(43, max((AIEngine.GetMaxSpeed(engine) - 85) /4, 0)) * 1500 + AIEngine.GetCapacity(engine)*AIEngine.GetMaxSpeed(engine);
 }
@@ -729,12 +729,12 @@ function RoadBuilder::SetOrdersForVehicle(vehicle_id) {
 					AIOrder.AppendOrder (vehicle_id, trasa.depot_tile,  AIOrder.OF_NON_STOP_INTERMEDIATE )&&
 					AIOrder.AppendOrder (vehicle_id, trasa.second_station.location, AIOrder.OF_NON_STOP_INTERMEDIATE | AIOrder.OF_NO_LOAD )&&
 					AIOrder.AppendOrder (vehicle_id, trasa.depot_tile,  AIOrder.OF_NON_STOP_INTERMEDIATE )&&
-					
+
 					AIOrder.InsertConditionalOrder (vehicle_id, conditionalOrderPosition, 2)&&
 					AIOrder.SetOrderCompareValue(vehicle_id, conditionalOrderPosition, 0)&&
 					AIOrder.SetOrderCondition (vehicle_id, conditionalOrderPosition, AIOrder.OC_LOAD_PERCENTAGE)&&
 					AIOrder.SetOrderCompareFunction(vehicle_id, conditionalOrderPosition, AIOrder.CF_MORE_THAN)&&
-					
+
 					AIOrder.InsertConditionalOrder (vehicle_id, unconditionalJumpPosition, 0)&&
 					AIOrder.SetOrderCompareValue(vehicle_id, unconditionalJumpPosition, 0)&&
 					AIOrder.SetOrderCondition (vehicle_id, unconditionalJumpPosition, AIOrder.OC_UNCONDITIONALLY))) {
@@ -781,11 +781,11 @@ function RoadBuilder::BuildVehicles() {
 	if (trasa.type == RouteType.rawCargo) {
 		string = "Raw cargo";
 	} else if (trasa.type == RouteType.processedCargo) {
-		string = "Processed cargo"; 
+		string = "Processed cargo";
 	} else if (trasa.type == RouteType.townCargo) {
 		string = "Bus line";
 	} else {
-		string = "WTF?"; 
+		string = "WTF?";
 		if (AIAI.GetSetting("crash_AI_in_strange_situations") == 1) {
 			abort("invalid enum value");
 		}
@@ -797,7 +797,7 @@ function RoadBuilder::BuildVehicles() {
 			constructed++;
 		}
 	}
-	
+
 	return constructed;
 }
 
@@ -932,7 +932,7 @@ function RoadBuilder::AddNewNecessaryRVToThisPlace(station_id, cargo) {
 	if (StationModificationStopped(station_id, another_station_id, cargo, original)) {
 		return 0;
 	}
-	
+
 	local processed = this.IsProcessedCargoVehicle(original);
 	if (processed == null) {
 		AddingStoppedInvalidStatus(station_id)
@@ -1218,9 +1218,9 @@ function RoadBuilder::copyVehicle(main_vehicle_id, cargo) {
 	local passengers = this.IstownCargoVehicle(main_vehicle_id);
 
 	if (raw && raw != null) {
-		string = "Raw cargo"; 
+		string = "Raw cargo";
 	} else if (processed && processed != null) {
-		string = "Processed cargo"; 
+		string = "Processed cargo";
 	} else if (passengers && passengers != null) {
 		string = "Bus line";
 	} else {
@@ -1273,7 +1273,7 @@ function RoadBuilder::IsVehicleNearStation(vehicle_id, station_id) {
 }
 
 function RoadBuilder::RemoveRedundantRVFromStation(station_id, cargo, vehicle_list) {
-	local waiting_counter = 0;	
+	local waiting_counter = 0;
 	local waiting_balance = 0;
 	local active_counter = 0;
 	local vehicle_for_skipping = null;
@@ -1360,7 +1360,7 @@ function RoadBuilder::deleteVehicles(vehicle_list, delete_goal, cargo) {
 
 function RoadBuilder::BuildRoadSegment(path, par, depth) {
 	if (depth>=6) {
-		Warning("Construction terminated: "+AIError.GetLastErrorString()); 
+		Warning("Construction terminated: "+AIError.GetLastErrorString());
 		if (AIAI.GetSetting("other_debug_signs"))AISign.BuildSign(path, "stad" + depth+AIError.GetLastErrorString());
 		return false;
 	}
@@ -1381,7 +1381,7 @@ function RoadBuilder::BuildRoadSegment(path, par, depth) {
 			}
 		}
 	}
-	
+
 	if (!result) {
 		local error = AIError.GetLastError();
 		if (error == AIError.ERR_ALREADY_BUILT) {
@@ -1391,7 +1391,7 @@ function RoadBuilder::BuildRoadSegment(path, par, depth) {
 			AIController.Sleep(20);
 			return this.BuildRoadSegment(path, par, depth+1);
 		}
-		Warning("Construction terminated: "+AIError.GetLastErrorString()); 
+		Warning("Construction terminated: "+AIError.GetLastErrorString());
 		if (AIAI.GetSetting("other_debug_signs")) {
 			AISign.BuildSign(path, "stad" + depth+AIError.GetLastErrorString());
 		}

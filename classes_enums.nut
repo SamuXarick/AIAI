@@ -42,7 +42,7 @@ class Route
 	budget = null;
 	demand = null;
 	OK = null;
-	
+
 	constructor()
 	{
 		first_station = Station();
@@ -83,13 +83,13 @@ class Route
 		returned.station_direction = station_direction;
 		returned.first_station = clone first_station;
 		returned.second_station = clone second_station;
-	
+
 		returned.track_type = track_type;
 		returned.engine = engine;
 		returned.engine_count = engine_count;
 		returned.budget = budget;
 		returned.demand = demand;
-		returned.OK = OK;	
+		returned.OK = OK;
 		return returned;
 	}
 }

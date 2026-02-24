@@ -17,7 +17,7 @@ function AutoreplaceBigPlanes() {
 		for (cargo = cargo_list.Begin(); cargo_list.HasNext(); cargo = cargo_list.Next()) {
 			if (AIEngine.CanRefitCargo(engine_existing, cargo))break;
 		}
-	
+
 	local distance = AIEngine.GetMaximumOrderDistance(engine_existing);
 	if (AIEngine.IsBuildable(AIGroup.GetEngineReplacement(AIGroup.GROUP_ALL, engine_existing))==false) {
 		local engine_best = (AirBuilder(this, 0)).FindAircraft(AIAirport.AT_LARGE, cargo, 1, Money.Inflate(100000000), distance)

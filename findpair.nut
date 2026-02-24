@@ -66,8 +66,8 @@ function FindPairWrapped(idea, builder) {
 						continue;
 					}
 					new = builder.ValuateConsumer(idea.end, idea.cargo, base);
-					local distance = AITile.GetDistanceManhattanToTile(AIIndustry.GetLocation(idea.end), AIIndustry.GetLocation(idea.start)); 
-					new *= builder.distanceBetweenIndustriesValuator(distance); 
+					local distance = AITile.GetDistanceManhattanToTile(AIIndustry.GetLocation(idea.end), AIIndustry.GetLocation(idea.start));
+					new *= builder.distanceBetweenIndustriesValuator(distance);
 					if (new>best) {
 						idea.start_tile = AIIndustry.GetLocation(idea.start);
 						idea.end_tile = AIIndustry.GetLocation(idea.end);

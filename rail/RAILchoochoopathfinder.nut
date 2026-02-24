@@ -4,7 +4,7 @@
 class RailPathfinder
 {
 	estimate_multiplier = 3;
-	
+
 	_aystar_class = AyStar;
 	_max_cost = null;              ///< The maximum cost for a route.
 	_cost_tile = null;             ///< The cost for a single tile.
@@ -208,12 +208,12 @@ function RailPathfinder::_Cost(path, new_tile, new_direction, self) {
 	local cost = self._cost_tile;
 	local diagonal = path.GetParent() != null && AIMap.DistanceManhattan(path.GetParent().GetTile(), prev_tile) == 1 && path.GetParent().GetTile() - prev_tile != prev_tile - new_tile;
 	if (diagonal) cost = self._cost_diagonal_tile;
-	
+
 	/* Check for a turn. We do this by substracting the TileID of the current
 	 *  node from the TileID of the previous node and comparing that to the
 	 *  difference between the tile before the previous node and the node before
 	 *  that. */
-	 
+
 	// if we don't have enough parents to determine a turn, assume diagonal is bad
 	// because we want to exit straight from stations and crossings
 	local long = path.GetParent() != null && path.GetParent().GetParent() != null;
@@ -223,13 +223,13 @@ function RailPathfinder::_Cost(path, new_tile, new_direction, self) {
 			//path.GetParent().GetParent().GetTile() - path.GetParent().GetTile() != prev_tile - new_tile) {
 		cost += self._cost_turn;
 	}
-	
+
 	/* Check for a double turn. */
 	if (path.GetParent() != null && path.GetParent().GetParent() != null && path.GetParent().GetParent().GetParent() != null &&
 			self._IsTurn(path.GetParent().GetParent().GetParent().GetTile(), path.GetParent().GetParent().GetTile(), path.GetParent().GetTile(), prev_tile)) {
 		cost += 5*self._cost_turn;
 	}
-	
+
 	/* Check if the new tile is a coast tile. */
 	if (AITile.IsCoastTile(new_tile)) {
 		cost += self._cost_coast;
@@ -271,7 +271,7 @@ function RailPathfinder::_Estimate(cur_tile, cur_direction, goal_tiles, self) {
 		local dy = abs(AIMap.GetTileY(cur_tile) - AIMap.GetTileY(tile[0]));
 		min_cost = min(min_cost, min(dx, dy) * self._cost_diagonal_tile * 2 + (max(dx, dy) - min(dx, dy)) * self._cost_tile);
 	}
-	
+
 	return min_cost*self.estimate_multiplier;
 }
 

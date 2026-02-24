@@ -10,7 +10,7 @@ class Rail{}
 
 	//from AdmiralAI by Thijs Marinussen
 	//constructs RailDepot and connects it to railway supplied in path parameter, may perform some landscaping to allow construction of the depot
-	//Returns a depot tile if successful, null otherwise 
+	//Returns a depot tile if successful, null otherwise
 	//BuildDepot(path);
 
 function Rail::GetBrakeVan(railtype) {

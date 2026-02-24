@@ -8,24 +8,24 @@ function strategyGenerator() {
 	new = RailBuilder(this, 0);
 	new.pathfinding_time_limit=20;
 	new.retry_limit=1;
-	builders[1] = new; 
+	builders[1] = new;
 
-	builders[2] = null; 
+	builders[2] = null;
 
 	new = TruckRoadBuilder(this, 0);
 	new.pathfinding_time_limit=10;
 	new.retry_limit=2;
-	builders[3] = new; 
+	builders[3] = new;
 
 	new = BusRoadBuilder(this, 0);
 	new.pathfinding_time_limit=10;
 	new.retry_limit=1;
-	builders[4] = new; 
+	builders[4] = new;
 
 	new = MailRoadBuilder(this, 0);
 	new.pathfinding_time_limit=10;
 	new.retry_limit=1;
-	builders[5] = new; 
+	builders[5] = new;
 	return builders;
 
 	new = CargoAirBuilder(this, 0);

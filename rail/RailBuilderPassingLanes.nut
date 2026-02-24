@@ -304,7 +304,7 @@ function RailBuilder::IsItPossibleToEndPathWIthIt(path, prevtile, tile, aftertil
 	} else {
 		return false;
 	}
-	
+
 	path=addTileToPath(path, tile, stay_behind_path);
 	if (path.OK) {
 		path=path.path;
@@ -349,7 +349,7 @@ function RailBuilder::IsItPossibleToStartPathWIthIt(prevprevtile, prevtile, tile
 		if (path.OK)path=path.path;
 		else return false;
 	}
-	
+
 	path=addTileToPath(path, tile, stay_behind_path);
 	if (path.OK) {
 		path=path.path;
@@ -461,7 +461,7 @@ class PassingLaneConstructor extends RailBuilder
 				last_finished=test;
 				end_tile = path;
 			} else {
-				if (side == debug_side) 
+				if (side == debug_side)
 				{
 					if (test != false) {
 						AISign.BuildSign(tile + AIMap.GetTileIndex(0, 0), "active, may NOT end here: "+test.GetRealLength());
@@ -479,7 +479,7 @@ class PassingLaneConstructor extends RailBuilder
 				last_finished = null;
 				if ( path.GetChildren() != null ) {
 					start_tile = path.GetChildren();
-					if ( path.GetChildren().GetChildren() != null ) 
+					if ( path.GetChildren().GetChildren() != null )
 					start_tile = path.GetChildren().GetChildren();
 				} else {
 					start_tile = path;
@@ -538,14 +538,14 @@ function RailBuilder::GeneratePassingLanes(path) {
 				}
 			}
 		}
-		
+
 		right.process(path, stay_behind_path, tile, prevtile, prevprevtile, nextile, nextile_in_end, after1tile_in_end, after2tile_in_end, after3tile_in_end, i)
 		left.process(path, stay_behind_path, tile, prevtile, prevprevtile, nextile, nextile_in_end, after1tile_in_end, after2tile_in_end, after3tile_in_end, i)
 
 		//AISign.BuildSign(tile, right.GetPositionOfStart() + " <" + i + "> " + left.GetPositionOfStart());
 		//AISign.BuildSign(right.GetPositionOfStart(), i);
 		//AISign.BuildSign(left.GetPositionOfStart(), i);
-		
+
 		if (right.Finished() && (right.GetPositionOfStart() < left.GetPositionOfStart() || left.Failed())) {
 			list.append(right.GetLane());
 			right = PassingLaneConstructor(true);
@@ -584,14 +584,14 @@ function RailBuilder::ConstructionOfPassingLanes(list) {
 			cost = GetCostOfRoute(copy);
 			Info("Waiting for more money: " + GetAvailableMoney()/1000 + "k / " + cost/1000 + "k");
 		}
-		
+
 		Info("****** available money: " + GetAvailableMoney())
-		
+
 		if (cost != null) {
 			Info("Entered")
 			ProvideMoney(cost)
 			Info("Provided")
-			if (DumbBuilder(copy, [	{error = AIError.ERR_NOT_ENOUGH_CASH, retry_count = 100, retry_time_wait = 50}, 
+			if (DumbBuilder(copy, [	{error = AIError.ERR_NOT_ENOUGH_CASH, retry_count = 100, retry_time_wait = 50},
 						{error = AIError.ERR_VEHICLE_IN_THE_WAY, retry_count = 4, retry_time_wait = 50}])) {
 				Info("Catched");
 				copy = list[i].path;

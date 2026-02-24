@@ -87,21 +87,21 @@ function GetAverageCapacityOfVehiclesFromStation(station, cargo) {
 function SafeAddRectangle(list, tile, radius) { //from Rondje
 	local x1 = max(1, AIMap.GetTileX(tile) - radius);
 	local y1 = max(1, AIMap.GetTileY(tile) - radius);
-	
+
 	local x2 = min(AIMap.GetMapSizeX() - 2, AIMap.GetTileX(tile) + radius);
 	local y2 = min(AIMap.GetMapSizeY() - 2, AIMap.GetTileY(tile) + radius);
-	
-	list.AddRectangle(AIMap.GetTileIndex(x1, y1), AIMap.GetTileIndex(x2, y2)); 
+
+	list.AddRectangle(AIMap.GetTileIndex(x1, y1), AIMap.GetTileIndex(x2, y2));
 }
 
 function SafeRemoveRectangle(list, tile, radius) { //based on code from Rondje
 	local x1 = max(1, AIMap.GetTileX(tile) - radius);
 	local y1 = max(1, AIMap.GetTileY(tile) - radius);
-	
+
 	local x2 = min(AIMap.GetMapSizeX() - 2, AIMap.GetTileX(tile) + radius);
 	local y2 = min(AIMap.GetMapSizeY() - 2, AIMap.GetTileY(tile) + radius);
-	
-	list.RemoveRectangle(AIMap.GetTileIndex(x1, y1), AIMap.GetTileIndex(x2, y2)); 
+
+	list.RemoveRectangle(AIMap.GetTileIndex(x1, y1), AIMap.GetTileIndex(x2, y2));
 }
 
 function IsTileFlatAndBuildable(tile) {
@@ -301,9 +301,9 @@ function DeleteUnprofitable() {
 	vehicle_list.KeepBelowValue(0);
 
 	Info(vehicle_list.Count() + " vehicle(s) should be sold because are unprofitable");
-	
+
 	local counter = 0;
-	
+
 	for (local vehicle_id = vehicle_list.Begin(); vehicle_list.HasNext(); vehicle_id = vehicle_list.Next()) {
 		local load_station_id = GetLoadStationId(vehicle_id)
 		if (load_station_id == null) {

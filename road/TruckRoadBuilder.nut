@@ -84,7 +84,7 @@ function TruckRoadBuilder::Go() {
 
 	for(local i=0; i<retry_limit; i++) {
 		Info("Scanning for truck route");
-		trasa = this.FindPair(trasa); 
+		trasa = this.FindPair(trasa);
 		if (!trasa.OK) {
 			Info("Nothing found!");
 			cost = 0;

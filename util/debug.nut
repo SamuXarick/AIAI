@@ -104,9 +104,9 @@ function ShortenErrorString(string){
 
 function IsTestModeEnabled() {
 	local gender = AICompany.GetPresidentGender(AICompany.COMPANY_SELF);
-	local other_gender = AICompany.GENDER_MALE 
+	local other_gender = AICompany.GENDER_MALE
 	if (gender == other_gender) {
-		other_gender = AICompany.GENDER_FEMALE 
+		other_gender = AICompany.GENDER_FEMALE
 	}
 	AICompany.SetPresidentGender(other_gender)
 	if (gender == AICompany.GetPresidentGender(AICompany.COMPANY_SELF)) {

@@ -32,8 +32,8 @@ AIVehicleList_Station.HasNext <-
 AIWaypointList.HasNext <-
 AIWaypointList_Vehicle.HasNext <-
 function() {
-	return !this.IsEnd(); 
-	//I have better things to do than changing HasNext to IsEnd all over my code because OpenTTD devs 
+	return !this.IsEnd();
+	//I have better things to do than changing HasNext to IsEnd all over my code because OpenTTD devs
 	//suddenly decided that former one is somehow better (IMHO it is worse due to more complex contruction - it requires !)
 }
 
@@ -86,7 +86,7 @@ AISign.BuildSign <- function(tile, text) {
 		}
 	}
 	return returned;
-} 
+}
 
 AISign._RemoveSign <- AISign.RemoveSign;
 AISign.RemoveSign <- function(id) {

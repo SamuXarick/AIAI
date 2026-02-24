@@ -55,7 +55,7 @@ class CustomPathfinder extends RoadPathFinder //Made with Zutty's help - thanks 
 		cost.no_existing_road = AIAI.GetSetting("no_road_cost");
 		cost.turn = 1;                 // minor penalty for turns
 		cost.slope =   10;             //changed //  don't care about slopes
-		cost.bridge_per_tile = 4+AIAI.GetSetting("no_road_cost"); 
+		cost.bridge_per_tile = 4+AIAI.GetSetting("no_road_cost");
 		cost.tunnel_per_tile = 4+AIAI.GetSetting("no_road_cost");
 		cost.coast =   0;              // don't care about coast tiles
 		cost.max_bridge_length = 15;

@@ -71,9 +71,9 @@ class Path
 
 	* Return the length (in tiles) of this path.
 	 */
-	function GetRealLength() 
-	{ 
+	function GetRealLength()
+	{
 	if (this.GetParent() == null) return 0;
-	return this.GetParent()._real_length; 
+	return this.GetParent()._real_length;
 	}
 };

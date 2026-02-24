@@ -146,7 +146,7 @@ function LoadDataFromStationNameFoundByStationId(station_id, delimiters) {
 	local end_code = delimiters[1]
 	local str = AIBaseStation.GetName(station_id)
 	local result = null;
-		
+
 	for(local i = 0; i < str.len(); ++i) {
 		//Warning(result+" from "+str+" ["+i+"]="+str[i]);
 		if (str[i]==start_code && result == null) {
@@ -178,7 +178,7 @@ function AIAI::SetStationName(location, data) {
 			return;
 		}
 	}
-	
+
 	if (!AIBaseStation.IsValidBaseStation(station_id)) {
 		abort("no station found");
 	}

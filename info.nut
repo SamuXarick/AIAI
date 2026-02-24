@@ -6,11 +6,11 @@ class AIAI extends AIInfo {
   function GetAPIVersion()  { return "1.6"; }
   function CreateInstance() { return "AIAI"; }
   function GetShortName()   { return "AIAI"; }
-  function MinVersionToLoad() { return 87; } 
+  function MinVersionToLoad() { return 87; }
   function GetDate()        { return "2012-10-1"; }
   function GetURL() {return "https://github.com/matkoniecz/AIAI/issues (preferred), other possibilities include http://tinyurl.com/ottdaiai (redirects to http://www.tt-forums.net/viewtopic.php?f=65&t=47298) and matkoniecz@gmail.com. Thanks! [kappa (" + GetVersion() +")]";}
 
-    function GetParameters() {
+	function GetParameters() {
 	////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ class AIAI extends AIInfo {
 	});
 	}
 
-    function GetSettings() {
+	function GetSettings() {
 	AddSetting( {
 		name = "use_trucks",
 		description = "Trucks allowed",
@@ -146,8 +146,8 @@ class AIAI extends AIInfo {
 		custom_value = 1,
 		flags = CONFIG_BOOLEAN + CONFIG_INGAME
 	});
-	AddSetting( {name = "scp_enabled", 
-		description = "Communicate with NoCarGoal. Note that it will result in construction of weird signs.", 
+	AddSetting( {name = "scp_enabled",
+		description = "Communicate with NoCarGoal. Note that it will result in construction of weird signs.",
 		easy_value = 0,
 		medium_value = 0,
 		hard_value = 0,

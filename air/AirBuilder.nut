@@ -114,7 +114,7 @@ function AirBuilder::FindSuitableAirportSpotNearIndustryWithAirportTypeConsumer(
 	list.RemoveValue(0);
 
 	list.Valuate(AirBuilder.GetOrderDistance, center_tile);
-	list.KeepBelowValue(max_distance);    
+	list.KeepBelowValue(max_distance);
 
 	return FindSuitableAirportSpotNearIndustryWithAirportType(list, airport_type);
 }
@@ -147,17 +147,17 @@ function AirBuilder::FindSuitableAirportSpotInTown(airport_type, center_tile=nul
 
 	if (center_tile != null) {
 		town_list.Valuate(AITown.GetDistanceManhattanToTile, center_tile);
-		town_list.KeepAboveValue(this.GetMinDistance());    
-		town_list.KeepBelowValue(this.GetMaxDistance());    
+		town_list.KeepAboveValue(this.GetMinDistance());
+		town_list.KeepBelowValue(this.GetMaxDistance());
 
-		town_list.Valuate(AirBuilder.GetOrderDistance, center_tile); //TODO - is this correct - GetOrderDistance requires tile, not city id 
-		town_list.KeepBelowValue(max_distance);    
+		town_list.Valuate(AirBuilder.GetOrderDistance, center_tile); //TODO - is this correct - GetOrderDistance requires tile, not city id
+		town_list.KeepBelowValue(max_distance);
 
 		town_list.Valuate(this.DistanceWithRandValuator, center_tile);
 		//TODO - what is the optimal distance? Old test indicates 500
 		town_list.KeepBottom(50);
 	}
-	
+
 
 	for (local town = town_list.Begin(); town_list.HasNext(); town = town_list.Next()) {
 		local tile = AITown.GetLocation(town);
@@ -168,18 +168,18 @@ function AirBuilder::FindSuitableAirportSpotInTown(airport_type, center_tile=nul
 		list.KeepValue(1);
 		list.Valuate(IsCityTileUsed, Helper.GetPAXCargo());
 		list.KeepValue(0);
-		// Sort on acceptance, remove places that don't have acceptance 
+		// Sort on acceptance, remove places that don't have acceptance
 		list.Valuate(AITile.GetCargoAcceptance, Helper.GetPAXCargo(), airport_x, airport_y, airport_rad);
 		list.RemoveBelowValue(50);
 		list.Valuate(AITile.GetCargoAcceptance, Helper.GetMailCargo(), airport_x, airport_y, airport_rad);
 		list.RemoveBelowValue(10);
-		
+
 		// Handle order distance
 		if (center_tile != null) {
 			town_list.Valuate(AirBuilder.GetOrderDistance, center_tile);
 			town_list.KeepBelowValue(max_distance);
 		}
-		// Couldn't find a suitable place for this town, skip to the next 
+		// Couldn't find a suitable place for this town, skip to the next
 		if (list.Count() == 0) continue;
 		// Walk all the tiles and see if we can build the airport at all
 		{
@@ -206,7 +206,7 @@ function AirBuilder::FindSuitableAirportSpotInTown(airport_type, center_tile=nul
 }
 
 function AirBuilder::FindSuitableAirportSpotInTownThatAcceptsThisWeirdCargo(town, cargo, center_tile=null, max_distance=INFINITE_DISTANCE) {
- 	local tile = AITown.GetLocation(town);
+	local tile = AITown.GetLocation(town);
 	local list = AITileList();
 	local range = Helper.Sqrt(AITown.GetPopulation(town)/100) + 15;
 	SafeAddRectangle(list, tile, range);
@@ -219,11 +219,11 @@ function AirBuilder::FindSuitableAirportSpotInTownThatAcceptsThisWeirdCargo(town
 	list.RemoveBelowValue(50);
 
 	list.Valuate(AirBuilder.GetOrderDistance, center_tile);
-	list.KeepBelowValue(max_distance);    
+	list.KeepBelowValue(max_distance);
 
 	list.Valuate(AITile.GetCargoAcceptance, Helper.GetMailCargo(), airport_x, airport_y, airport_rad);
 	list.RemoveBelowValue(10);
-	
+
 	/* Couldn't find a suitable place for this town, skip to the next */
 	if (list.Count() == 0) return null;
 	/* Walk all the tiles and see if we can build the airport at all */
@@ -324,7 +324,7 @@ function AirBuilder::BuildExpressAircraft(tile_1, tile_2, engine, cargo) {
 	AIOrder.AppendOrder(vehicle, tile_1, 0);
 	AIOrder.AppendOrder(vehicle, tile_2, 0);
 	AIVehicle.StartStopVehicle(vehicle);
-		
+
 	return true;
 }
 
@@ -459,11 +459,11 @@ function AirBuilder::GetEffectiveDistanceBetweenAirports(tile_1, tile_2) {
 function AirBuilder::GetBurdenOfSingleAircraft(tile_1, tile_2, engine) {
 	local speed_in_kmh = AIEngine.GetMaxSpeed(engine);
 	local distance_in_tiles = GetEffectiveDistanceBetweenAirports(tile_1, tile_2);
-	
+
 	//http://wiki.openttd.org/Game_mechanics#Vehicle_speeds
-	//The net result is that 100 km/hour is ~3.6 tiles/day. 
+	//The net result is that 100 km/hour is ~3.6 tiles/day.
 	local speed_in_tiles_per_day = speed_in_kmh / 100.0 * 3.6;
-	
+
 	local time_spend_on_taxiing_during_sigle_trip = 11;
 	local time_spend_on_loading_and_unloading = 5;
 	local days_to_complete_route = distance_in_tiles / speed_in_tiles_per_day + time_spend_on_taxiing_during_sigle_trip + time_spend_on_loading_and_unloading;
@@ -504,7 +504,7 @@ function AirBuilder::AirportThroughput(airport_type){
 	intercontinental: ?
 	*/
 	if (airport_type==AIAirport.AT_METROPOLITAN ) return 600;
-	if (airport_type==AIAirport.AT_LARGE) return 500; // city 
+	if (airport_type==AIAirport.AT_LARGE) return 500; // city
 	if (airport_type==AIAirport.AT_COMMUTER) return 500;
 	if (airport_type==AIAirport.AT_SMALL) return 300;
 	assert(false);
@@ -514,7 +514,7 @@ function AirBuilder::IsItPossibleToAddBurden(airport_id, tile=null, engine=null,
 local total = this.GetCurrentBurdenOfAirport(airport_id);
 local airport_type = AIAirport.GetAirportType(AIStation.GetLocation(airport_id));
 local maximum = AirportThroughput(airport_type);
- 
+
 if (AIAI.GetSetting("debug_signs_for_airports_load")) Helper.BuildSign(AIStation.GetLocation(airport_id), total + " (" + maximum + ")");
 
 if (tile != null && engine != null) total+=count*this.GetBurdenOfSingleAircraft(AIStation.GetLocation(airport_id), tile, engine);
@@ -685,7 +685,7 @@ function AirBuilder::Skipper() {
 function AirBuilder::PopulationWithRandValuator(town_id) {
 	return AITown.GetPopulation(town_id)-AIBase.RandRange(500);
 }
-	
+
 function AirBuilder::DistanceWithRandValuator(town_id, center_tile) {
 	local rand = AIBase.RandRange(150);
 	local distance = AITown.GetDistanceManhattanToTile(town_id, center_tile)-AirBuilder.GetOptimalDistance();

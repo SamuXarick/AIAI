@@ -52,7 +52,7 @@ _SuperLib_Helper.BuildCompanyHQ <- function() {
 	towns.Valuate(AITown.GetPopulation);
 	towns.Sort(AIList.SORT_BY_VALUE, false);
 	local town = towns.Begin();
-	
+
 	// Find empty 2x2 square as close to town centre as possible
 	local maxRange = Helper.Sqrt(AITown.GetPopulation(town)/100) + 5;
 	local HQArea = AITileList();
@@ -61,17 +61,17 @@ _SuperLib_Helper.BuildCompanyHQ <- function() {
 	HQArea.KeepValue(1);
 	HQArea.Valuate(AIMap.DistanceManhattan, AITown.GetLocation(town));
 	HQArea.Sort(AIList.SORT_BY_VALUE, true);
-	
+
 	for (local tile = HQArea.Begin(); HQArea.HasNext(); tile = HQArea.Next()) {
 		if (AICompany.BuildCompanyHQ(tile)) {
 			return true;
-		} 
+		}
 	}
 	return false;
 }
 
 _SuperLib_Helper.Sqrt <- function(i)
-{ 
+{
 	assert(i>=0);
 	if (i == 0) {
 		return 0; // Avoid divide by zero

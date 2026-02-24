@@ -1,6 +1,6 @@
 g_no_car_goal <- null;
 
-class AIAI extends AIController 
+class AIAI extends AIController
 {
 	desperation = null;
 	general_inspection = null;
@@ -25,7 +25,7 @@ function AIAI::Starter() {
 	Info("AIAI loaded!");
 	Info("");
 	Info("Hi!");
-	
+
 	NameCompany();
 	if (!AIMap.IsValidTile(AICompany.GetCompanyHQ(AICompany.COMPANY_SELF))) {
 		Info("Building company HQ...")
@@ -182,7 +182,7 @@ function AIAI::ConsiderGeneralInspection(){
 	if (time >= 6) { //6 months
 		this.Rungeneral_inspection();
 		this.general_inspection = GetDate();
-	}	
+	}
 }
 
 function AIAI::Rungeneral_inspection() {
@@ -364,14 +364,14 @@ function AIAI::HandleEvents() //from CluelessPlus and SimpleAI
 		switch(event.GetEventType())
 		{
 		case AIEvent.ET_VEHICLE_LOST:
-    		Warning("Vehicle lost event detected!");
+			Warning("Vehicle lost event detected!");
 			local lost_event = AIEventVehicleLost.Convert(event);
 			local lost_veh = lost_event.GetVehicleID();
 
 			/*
 			TODO - do sth with that code
 			local connection = ReadConnectionFromVehicle(lost_veh);
-			
+
 			if (connection.station.len() >= 2 && connection.connection_failed != true)
 			{
 				Info("Try to connect the stations again");
