@@ -30,7 +30,7 @@ class Route
 	end_tile = null;
 	cargo = null;
 	production = null;
-	type = null;
+	route_type = null;
 	station_size = null;
 	station_direction = null;
 	first_station = null;
@@ -55,7 +55,7 @@ class Route
 		end_tile = null;
 		cargo = null;
 		production = null;
-		type = null;
+		route_type = null;
 		station_size = null;
 		engine = null;
 		engine_count = null;
@@ -78,7 +78,7 @@ class Route
 		returned.end_tile = end_tile;
 		returned.cargo = cargo;
 		returned.production = production;
-		returned.type = type;
+		returned.route_type = route_type;
 		returned.station_size = station_size;
 		returned.station_direction = station_direction;
 		returned.first_station = clone first_station;

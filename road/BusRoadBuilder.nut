@@ -65,7 +65,7 @@ function BusRoadBuilder::FindBusPair() {
 		local cargo_production_at_first_location = AITile.GetCargoAcceptance(trasa.first_station.location, trasa.cargo, 1, 1, 3);
 		local cargo_production_at_second_location = AITile.GetCargoAcceptance(trasa.second_station.location, trasa.cargo, 1, 1, 3);
 		trasa.production = min(cargo_production_at_first_location, cargo_production_at_second_location);
-		trasa.type = RouteType.townCargo;
+		trasa.route_type = RouteType.townCargo;
 
 		trasa = FindEngineForRoute(trasa);
 		if (trasa.engine == null) {

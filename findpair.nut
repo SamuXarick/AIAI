@@ -127,9 +127,9 @@ function FindPairWrapped(idea, builder) {
 	}
 	choice.OK = true;
 	if (AIIndustryType.IsRawIndustry(AIIndustry.GetIndustryType(choice.start))) {
-		choice.type = RouteType.rawCargo;
+		choice.route_type = RouteType.rawCargo;
 	} else {
-		choice.type = RouteType.processedCargo;
+		choice.route_type = RouteType.processedCargo;
 	}
 	return choice;
 }

@@ -767,17 +767,17 @@ function RailBuilder::SignalPathAdvanced(path, skip, end, signal_count_limit) //
 }
 
 function RailBuilder::TrainOrders(engineId) {
-	if (trasa.type == RouteType.rawCargo) {
+	if (trasa.route_type == RouteType.rawCargo) {
 		AIOrder.AppendOrder (engineId, trasa.first_station.location, AIOrder.OF_FULL_LOAD_ANY | AIOrder.OF_NON_STOP_INTERMEDIATE );
 		AIOrder.AppendOrder (engineId, trasa.second_station.location, AIOrder.OF_NON_STOP_INTERMEDIATE | AIOrder.OF_NO_LOAD );
-	} else if (trasa.type == RouteType.processedCargo) {
+	} else if (trasa.route_type == RouteType.processedCargo) {
 		AIOrder.AppendOrder (engineId, trasa.first_station.location, AIOrder.OF_FULL_LOAD_ANY | AIOrder.OF_NON_STOP_INTERMEDIATE );
 		AIOrder.AppendOrder (engineId, trasa.second_station.location, AIOrder.OF_NON_STOP_INTERMEDIATE | AIOrder.OF_NO_LOAD );
-	} else if (trasa.type == RouteType.townCargo) {
+	} else if (trasa.route_type == RouteType.townCargo) {
 		AIOrder.AppendOrder (engineId, trasa.first_station.location, AIOrder.OF_FULL_LOAD_ANY | AIOrder.OF_NON_STOP_INTERMEDIATE );
 		AIOrder.AppendOrder (engineId, trasa.second_station.location, AIOrder.OF_FULL_LOAD_ANY | AIOrder.OF_NON_STOP_INTERMEDIATE );
 	} else {
-		abort("Wrong value in trasa.type. (" + trasa.type + ") Prepare for explosion.");
+		abort("Wrong value in trasa.route_type. (" + trasa.route_type + ") Prepare for explosion.");
 	}
 }
 

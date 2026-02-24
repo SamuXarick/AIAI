@@ -715,13 +715,13 @@ function RoadBuilder::sellVehicleStoppedInDepotDueToFoo(vehicle_id, foo) {
 }
 
 function RoadBuilder::SetOrdersForVehicle(vehicle_id) {
-	if (trasa.type == RouteType.rawCargo) {
+	if (trasa.route_type == RouteType.rawCargo) {
 		if (!(AIOrder.AppendOrder (vehicle_id, trasa.first_station.location, AIOrder.OF_FULL_LOAD_ANY | AIOrder.OF_NON_STOP_INTERMEDIATE )&&
 					AIOrder.AppendOrder (vehicle_id, trasa.second_station.location, AIOrder.OF_NON_STOP_INTERMEDIATE | AIOrder.OF_NO_LOAD ))) {
 			this.sellVehicleStoppedInDepotDueToFoo(vehicle_id, "order appending");
 			return null;
 		}
-	} else if (trasa.type == RouteType.processedCargo) {
+	} else if (trasa.route_type == RouteType.processedCargo) {
 		local conditionalOrderPosition=1;
 		local unconditionalJumpPosition=3;
 
@@ -741,14 +741,14 @@ function RoadBuilder::SetOrdersForVehicle(vehicle_id) {
 			this.sellVehicleStoppedInDepotDueToFoo(vehicle_id, "order appending");
 			return null;
 		}
-	} else if (trasa.type == RouteType.townCargo) {
+	} else if (trasa.route_type == RouteType.townCargo) {
 		if (!(AIOrder.AppendOrder (vehicle_id, trasa.first_station.location, AIOrder.OF_FULL_LOAD_ANY | AIOrder.OF_NON_STOP_INTERMEDIATE )&&
 					AIOrder.AppendOrder (vehicle_id, trasa.second_station.location, AIOrder.OF_FULL_LOAD_ANY | AIOrder.OF_NON_STOP_INTERMEDIATE ))) {
 			this.sellVehicleStoppedInDepotDueToFoo(vehicle_id, "order appending");
 			return null;
 		}
 	} else {
-		abort("Wrong value in trasa.type. (" + trasa.type + ") Prepare for explosion.");
+		abort("Wrong value in trasa.route_type. (" + trasa.route_type + ") Prepare for explosion.");
 	}
 }
 
@@ -778,11 +778,11 @@ function RoadBuilder::BuildVehicles() {
 	}
 
 	local string;
-	if (trasa.type == RouteType.rawCargo) {
+	if (trasa.route_type == RouteType.rawCargo) {
 		string = "Raw cargo";
-	} else if (trasa.type == RouteType.processedCargo) {
+	} else if (trasa.route_type == RouteType.processedCargo) {
 		string = "Processed cargo";
-	} else if (trasa.type == RouteType.townCargo) {
+	} else if (trasa.route_type == RouteType.townCargo) {
 		string = "Bus line";
 	} else {
 		string = "WTF?";
