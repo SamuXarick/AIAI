@@ -433,7 +433,7 @@ function AIAI::HandleEvents() //from CluelessPlus and SimpleAI
 			}
 			break;
 		case AIEvent.ET_COMPANY_BANKRUPT:
-			event = AIEventCompanyInTrouble.Convert(event);
+			event = AIEventCompanyBankrupt.Convert(event);
 			local company = event.GetCompanyID();
 			if (AICompany.IsMine(company)) {
 				Error("Our company failed! Ops.");
