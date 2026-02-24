@@ -166,7 +166,10 @@ function AirBuilder::FindSuitableAirportSpotInTown(airport_type, center_tile=nul
 		SafeAddRectangle(list, tile, range);
 		list.Valuate(AITile.IsBuildableRectangle, airport_x, airport_y);
 		list.KeepValue(1);
-		list.Valuate(IsCityTileUsed, Helper.GetPAXCargo());
+		local pax_cargo = Helper.GetPAXCargo();
+		for (local tile_id = list.Begin(); list.HasNext(); tile_id = list.Next()) {
+			list[tile_id] = IsCityTileUsed(tile_id, pax_cargo);
+		}
 		list.KeepValue(0);
 		// Sort on acceptance, remove places that don't have acceptance
 		list.Valuate(AITile.GetCargoAcceptance, Helper.GetPAXCargo(), airport_x, airport_y, airport_rad);
