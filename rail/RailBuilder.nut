@@ -946,7 +946,7 @@ function RailBuilder::GetEngineListExceptClearlyBad(wagonId, cargoId, track_type
 function RailBuilder::EngineCostValuator(engineId){
 	local multiplier = 10;
 	if(AIEngine.GetMaxTractiveEffort(engineId) < 100) {
-		multiplier = 10*100/AIEngine.GetMaxTractiveEffort(engineId);
+		multiplier = 10*100/max(1, AIEngine.GetMaxTractiveEffort(engineId));
 	}
 	//AIEngine.GetRunningCost gives the running cost of a vehicle per year.
 	return (AIEngine.GetPrice(engineId) + AIEngine.GetRunningCost(engineId)) * multiplier;
