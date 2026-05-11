@@ -198,7 +198,7 @@ function RailBuilder::TrainReplaceOnThisStation(station_id) {
 		}
 		local cargo_list = AICargoList();
 		local max = 0;
-		local max_cargo;
+		local max_cargo = AICargo.CT_INVALID;
 		for (local cargo = cargo_list.Begin(); cargo_list.HasNext(); cargo = cargo_list.Next()) {
 			if (AIVehicle.GetCapacity(vehicle_id, cargo)>max) {
 				max = AIVehicle.GetCapacity(vehicle_id, cargo);
@@ -257,6 +257,9 @@ function RailBuilder::TrainReplace() {
 }
 
 function RailBuilder::GetStationSize(station_tile) {
+	if (station_tile == null) {
+		return null;
+	}
 	if (AIRail.GetRailStationDirection(station_tile) == AIRail.RAILTRACK_NE_SW) { //x_is_constant__horizontal
 		local direction = AIRail.RAILTRACK_NE_SW;
 		for(local i = 0; true; i++) {
@@ -955,6 +958,10 @@ function RailBuilder::EngineCostValuator(engineId){
 
 function RailBuilder::FindBestEngine(wagonId, trainsize, cargoId, track_type)//from DenverAndRioGrande
 {
+	if (trainsize == null) {
+		return null;
+	}
+
 	local minHP = 175 * trainsize;
 
 	local speed = AIEngine.GetMaxSpeed(wagonId);
