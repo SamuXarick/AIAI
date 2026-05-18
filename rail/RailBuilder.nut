@@ -130,7 +130,10 @@ function RailBuilder::AddTrainsToThisStation(station, cargo) {
 	}
 	local location_of_processed_station = AIStation.GetLocation(station);
 	local location_of_load_station = GetLoadStationLocation(original)
-	assert(location_of_processed_station == location_of_load_station);
+	if (location_of_processed_station != location_of_load_station) {
+		Error(AIVehicle.GetName(original) + " doesn't load cargo on the expected station.");
+		return 0;
+	}
 	if (AIVehicle.GetProfitLastYear(original) + AIVehicle.GetProfitThisYear(original) <0) {
 		Warning("Unprofitable leader");
 		return 0;
